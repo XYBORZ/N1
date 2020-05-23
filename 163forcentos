@@ -1,0 +1,24 @@
+#安装Nodejs
+curl -sL https://rpm.nodesource.com/setup_10.x | bash - 
+yum -y install nodejs
+#安装Supervisor
+yum -y install epel-release
+yum -y install supervisor
+#拉取文件[没有git的话可以执行此命令yum install git安装]
+git clone https://github.com/nondanee/UnblockNeteaseMusic.git
+cd UnblockNeteaseMusic
+#配置supervisor并在后台运行[没有nano编辑器的话可以执行此命令yum -y install nano安装]
+nano /etc/supervisord.d/netease.ini
+#写入以下配置：[按下Ctrl+X然后按Y即可退出编辑界面]
+[supervisord]
+nodaemon=false
+
+[program:netease]
+user=root
+directory=/root/UnblockNeteaseMusic
+command=/usr/bin/node app.js -p 16300
+autostart=true
+autorestart=true
+#启动项目
+systemctl start supervisord
+systemctl enable supervisord
