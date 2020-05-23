@@ -22,3 +22,9 @@ autorestart=true
 #启动项目
 systemctl start supervisord
 systemctl enable supervisord
+
+#Windows客户端:打开网易云音乐客户端,点击设置-工具-使用自定义代理,选择HTTP代理,填写服务器地址和端口,点击确定,然后重启客户端即可看到效果.
+#QuantumultX配置的写法
+#[server_local]
+#http=1.2.3.4:16300, fast-open=false, udp-relay=false, tag=网易云解锁
+#证书下载https://merlinblog.xyz/usr/uploads/2020/03/1899883711.crt
